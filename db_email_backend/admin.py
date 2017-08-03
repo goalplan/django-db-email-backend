@@ -8,10 +8,16 @@ from .models import Email, EmailAlternative, EmailAttachment
 
 class EmailAlternativeInline(admin.StackedInline):
     model = EmailAlternative
-    readonly_fields = ('mimetype', 'content')
+    exclude = ('content', 'mimetype')
+    readonly_fields = ('get_preview', )
     extra = 0
     max_num = 0
     can_delete = False
+
+    def get_preview(self, instance):
+        return instance.content
+    get_preview.allow_tags = True
+    get_preview.short_description = "Preview"
 
 
 class EmailAttachmentInline(admin.StackedInline):
@@ -28,7 +34,7 @@ class EmailAdmin(admin.ModelAdmin):
         ('to', 'cc', 'bcc'),
         'subject', 'body', 'headers')
     readonly_fields = (
-        'create_date','from_email', 'to', 'cc', 'bcc', 'subject', 'body', 'content_subtype', 'headers')
+        'create_date', 'from_email', 'to', 'cc', 'bcc', 'subject', 'body', 'content_subtype', 'headers')
     list_display = ('subject', 'to', 'from_email', 'create_date', 'attachment_count', 'alternative_count')
     list_filter = ('content_subtype',)
     date_hierarchy = 'create_date'
