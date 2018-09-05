@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from .models import Email, EmailAlternative, EmailAttachment
 
@@ -15,8 +16,7 @@ class EmailAlternativeInline(admin.StackedInline):
     can_delete = False
 
     def get_preview(self, instance):
-        return instance.content
-    get_preview.allow_tags = True
+        return mark_safe(instance.content)
     get_preview.short_description = "Preview"
 
 
