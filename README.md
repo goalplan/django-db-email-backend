@@ -1,7 +1,7 @@
 Django DB Email Backend
 =======================
 
-[![Build Status](https://travis-ci.org/goalplan/django-db-email-backend.svg?branch=master)](https://travis-ci.org/goalplan/django-db-email-backend)
+[![Build Status](https://travis-ci.com/goalplan/django-db-email-backend.svg?branch=master)](https://travis-ci.com/goalplan/django-db-email-backend)
 
 Django email backend for storing messages to a database. This is intended to be used in developement in cases where you want to test sending emails, but don't want to send real emails and don't have access to the console output (such as on a remote server).
 
